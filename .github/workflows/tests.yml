@@ -49,15 +49,7 @@ jobs:
       run: php artisan key:generate
       working-directory: ./task_management_system
 
-    - name: Cache node modules
-      uses: actions/cache@v2
-      with:
-        path: task_management_system/node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
-    - name: Setup Node.js
+    - name: Install Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '16'
