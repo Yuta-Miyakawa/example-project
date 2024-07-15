@@ -27,8 +27,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        path: task_management_system
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -39,15 +37,12 @@ jobs:
 
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-interaction --no-progress
-      working-directory: ./task_management_system
 
     - name: Copy environment file
       run: cp .env.example .env
-      working-directory: ./task_management_system
 
     - name: Generate app key
       run: php artisan key:generate
-      working-directory: ./task_management_system
 
     - name: Install Node.js
       uses: actions/setup-node@v2
@@ -59,14 +54,11 @@ jobs:
 
     - name: Build assets
       run: npm run build
-      working-directory: ./task_management_system
 
     - name: Create SQLite database
       run: |
         touch database/database.sqlite
         php artisan migrate --env=testing --database=sqlite --path=database/migrations
-      working-directory: ./task_management_system
 
     - name: Run tests
       run: vendor/bin/phpunit
-      working-directory: ./task_management_system
