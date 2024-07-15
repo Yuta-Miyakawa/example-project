@@ -52,8 +52,8 @@ jobs:
     - name: Install npm dependencies
       run: npm install
 
-    - name: run dev assets
-      run: npm run dev
+    - name: Build assets
+      run: npm run build
 
     - name: Create SQLite database
       run: |
